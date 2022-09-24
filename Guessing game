@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main()
+{
+	//int new = 99;
+	int people = 0;
+	int cnt = 0;
+	int n = 7;
+	int money;
+	money = 25;
+	printf("%d", money);
+	printf("Let's start this interesting game.\n"
+		"Please pass any key to read the following rules of the game:\n");
+	getch();
+	printf("1.This is a gessing game."
+		"I will give you a positive integer witnin 100 for you to guss.\n"
+		"And remind you to guss big or small.\n");
+	printf("2.At first you have $25."
+		"You need to pay $5 for each round of the game.\n"
+		"(1)If you guss correctly, you will be reward with $100.\n"
+		"(2)If you guss correctly within 3 times, you will be reward with $50.\n"
+		"(3)If you guss correctly within 5 times, you will be reward with $25.\n"
+		"(4)If you guss correctly within 7 times, you will be reward with $5.\n"
+		"   If you guess wrong more than 7 times,it will be regarded as failure and quit the game."
+		"3.Note that if you don't have enough money, you won't be able to continue playing.\n");
+	printf("Do you have any questions?\nplease input:Yes or No\n");
+	char c;
+	scanf_s("%1c",&c);
+	int answer = c;
+	if (answer == 78) {
+		printf("OK,Let's begin now!\n");
+	}
+	else { goto finish; }
+	while (money > 0) {
+		srand(time(0));
+		int a = rand();
+		int new = a % 100;
+		money -= 5;
+		cnt = 0;
+		printf("Please enter the first number you guessed.");
+		do {
+			//printf("%d", money);
+			//getch();
+			scanf_s("%d", &people);
+			cnt++;
+			if (cnt < n + 1) {
+				if (cnt < n) {
+					if (people > new) {
+						printf("You guessed it big!Please try again.\n");
+					}if (people < new) {
+						printf("You guessed it smail!Please try again.\n");
+					}
+				}
+				/*if (cnt == n) {
+					printf("Game over.The number is %d.", new);
+				}*/
+			}
+			else break;
+		} while (people != new);
+		//printf("%d",cnt);
+		switch (cnt) {
+		case 1:
+			printf("\aYou gussed it right one time,I admire you so much!");
+			money += 100;
+			break;
+		case 2:
+		case 3:
+			printf("\aLucky you! You are great!");
+			money += 50;
+			break;
+		case 4:
+		case 5:
+			printf("\aSo propitious this time...");
+			money += 25;
+			break;
+		case 6:
+		case 7:
+			printf("\aBingo!");
+			money += 5;
+			break;
+		}
+		printf("\nYou have $%d now.\n", money);
+		printf("Press any key to start the next game.\n");
+		getch();
+		system("cls");
+	}
+	finish:
+	return 0;
+}
