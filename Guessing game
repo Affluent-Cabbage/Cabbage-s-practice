@@ -3,10 +3,8 @@
 #include <time.h>
 int main()
 {
-	//int new = 99;
 	int people = 0;
 	int cnt = 0;
-	int n = 7;
 	int money;
 	money = 25;
 	printf("%d", money);
@@ -22,11 +20,11 @@ int main()
 		"(2)If you guss correctly within 3 times, you will be reward with $50.\n"
 		"(3)If you guss correctly within 5 times, you will be reward with $25.\n"
 		"(4)If you guss correctly within 7 times, you will be reward with $5.\n"
-		"   If you guess wrong more than 7 times,it will be regarded as failure and quit the game."
+		"   If you guess wrong more than 7 times,it will be regarded as failure and quit the game.\n"
 		"3.Note that if you don't have enough money, you won't be able to continue playing.\n");
 	printf("Do you have any questions?\nplease input:Yes or No\n");
 	char c;
-	scanf_s("%1c",&c);
+	scanf_s("%1c", &c);
 	int answer = c;
 	if (answer == 78) {
 		printf("OK,Let's begin now!\n");
@@ -38,27 +36,19 @@ int main()
 		int new = a % 100;
 		money -= 5;
 		cnt = 0;
-		printf("Please enter the first number you guessed.");
+		printf("Please enter the first number you guessed.\n");
 		do {
-			//printf("%d", money);
-			//getch();
-			scanf_s("%d", &people);
 			cnt++;
-			if (cnt < n + 1) {
-				if (cnt < n) {
+				if (cnt < 8) {
+					scanf_s("%d", &people);
 					if (people > new) {
 						printf("You guessed it big!Please try again.\n");
 					}if (people < new) {
 						printf("You guessed it smail!Please try again.\n");
 					}
 				}
-				/*if (cnt == n) {
-					printf("Game over.The number is %d.", new);
-				}*/
-			}
 			else break;
 		} while (people != new);
-		//printf("%d",cnt);
 		switch (cnt) {
 		case 1:
 			printf("\aYou gussed it right one time,I admire you so much!");
@@ -85,6 +75,6 @@ int main()
 		getch();
 		system("cls");
 	}
-	finish:
+finish:
 	return 0;
 }
